@@ -11,6 +11,7 @@ import org.jline.terminal.Terminal;
 import org.jline.terminal.TerminalBuilder;
 import org.jline.utils.AttributedString;
 import org.jline.utils.AttributedStyle;
+import org.jline.utils.InfoCmp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,9 @@ public class BaseSpringShellCommand extends AbstractCommandSupport {
     public void run() {
     	try {
     		Thread.currentThread().setName("SSHD--TEST");
-            TerminalBuilder builder = TerminalBuilder.builder().system(false).streams(in, out).type("auto");
+            //supported terminal type by JLine in Infocmp class:
+            //"dumb", "ansi", "xterm", "xterm-256color","windows", "screen", "screen-256color"
+            TerminalBuilder builder = TerminalBuilder.builder().system(false).streams(in, out).type("xterm");
             Terminal terminal = builder.build();
             LineReader linkReader = LineReaderBuilder.builder().terminal(terminal).build();
             JLineInputProvider inputProvider = new JLineInputProvider(linkReader, promptProvider());
