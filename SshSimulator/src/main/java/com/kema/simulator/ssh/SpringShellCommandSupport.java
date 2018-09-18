@@ -11,26 +11,22 @@ import org.jline.terminal.Terminal;
 import org.jline.terminal.TerminalBuilder;
 import org.jline.utils.AttributedString;
 import org.jline.utils.AttributedStyle;
-import org.jline.utils.InfoCmp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.shell.Shell;
 import org.springframework.shell.jline.PromptProvider;
 import org.springframework.shell.jline.InteractiveShellApplicationRunner.JLineInputProvider;
-import org.springframework.shell.result.DefaultResultHandler;
 
-public class BaseSpringShellCommand extends AbstractCommandSupport {
+public class SpringShellCommandSupport extends AbstractCommandSupport {
 	
-	static final Logger logger = LoggerFactory.getLogger(BaseSpringShellCommand.class);
+	static final Logger logger = LoggerFactory.getLogger(SpringShellCommandSupport.class);
 
-    protected MyShell shell;
+    protected SpringShell shell;
 
-    public BaseSpringShellCommand(MyShell shell) {
+    public SpringShellCommandSupport(SpringShell shell) {
         this(null, shell);
     }
 
-    public BaseSpringShellCommand(String command, MyShell shell)
+    public SpringShellCommandSupport(String command, SpringShell shell)
     {
         super(command, null, true);
         this.shell = shell;
