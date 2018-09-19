@@ -1,6 +1,7 @@
 package com.kema.discovery.entities;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +11,7 @@ import java.util.Map;
 /**
  *  Represents a entity discovered from network
  */
+@Document(collection = "Entities")
 public class EntityObj {
 
     @Id
