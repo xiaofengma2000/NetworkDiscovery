@@ -4,6 +4,11 @@
 
 Common : common lib
 
+1. create a common message Pub/Sub layer to hide the lower level impl
+2. use rabbitmq as intial message broker
+3. extend it to kafka
+
+
 DiscoveryService : to be a microservice responsible for discovery
 
 1. use mongoDb as repository
