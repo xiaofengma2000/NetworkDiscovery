@@ -47,14 +47,17 @@ public class KafkaConsumerPub<T> implements Flow.Publisher<T>{
 
     public int submit(T item) {
         //check the estimated maximum to prevent over feed the publisher
-        final int submit = submissionPublisher.submit(item);
+        int submit = submissionPublisher.submit(item);
         while(submit > MAX_EVENT){
             //wait until some events are consumed
             try {
-                Thread.sleep(Duration.ofSeconds(5).toMillis());
+                final long millis = Duration.ofSeconds(5).toMillis();
+                Thread.sleep(millis);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            submit = submissionPublisher.estimateMaximumLag();
+            logger.info("Number of events produced not consumed : {}", submit);
         }
         return submit;
     }
